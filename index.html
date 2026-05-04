@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cutie Club — Tu tienda de sorpresas íntimas</title>
+  <meta name="description" content="Bombachas sorpresa por suscripción. Sweet, Glam o Dare — elegís el pack, nosotras elegimos por vos. Envío mensual a toda Argentina." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose: #F2B8C6;
+      --deep-rose: #E8899A;
+      --cream: #FDF6F0;
+      --nude: #E8D5C4;
+      --charcoal: #2C2025;
+      --muted: #7a6068;
+      --light-muted: #b0949c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253, 246, 240, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid var(--rose);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+    .nav-brand span { font-style: italic; color: var(--deep-rose); }
+    .nav-cta {
+      background: var(--deep-rose);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: #d4748a; }
+
+    /* HERO */
+    .hero {
+      background: var(--cream);
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      border-bottom: 0.5px solid var(--rose);
+    }
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--deep-rose);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 10vw, 80px);
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.05;
+      margin-bottom: 0.4rem;
+    }
+    .hero-title span { font-style: italic; color: var(--deep-rose); }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 1.5rem auto 2rem;
+      line-height: 1.7;
+    }
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .badge {
+      background: #fff;
+      border: 0.5px solid var(--rose);
+      border-radius: 999px;
+      padding: 7px 18px;
+      font-size: 13px;
+      color: var(--deep-rose);
+    }
+    .btn-main {
+      display: inline-block;
+      background: var(--deep-rose);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 18px 48px;
+      font-size: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-main:hover { background: #d4748a; transform: translateY(-1px); }
+    .hero-note {
+      font-size: 12px;
+      color: var(--light-muted);
+      margin-top: 1.2rem;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 4rem 2rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--deep-rose);
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 36px);
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+    .section-title span { font-style: italic; color: var(--deep-rose); }
+    .divider { border: none; border-top: 0.5px solid var(--rose); margin: 0; }
+
+    /* HOW IT WORKS */
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .step {
+      text-align: center;
+      padding: 2rem 1.2rem;
+      background: #fff;
+      border: 0.5px solid var(--rose);
+      border-radius: 20px;
+    }
+    .step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--rose);
+      color: var(--deep-rose);
+      font-weight: 500;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .step h3 { font-size: 15px; font-weight: 500; color: var(--charcoal); margin-bottom: 0.5rem; }
+    .step p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* PACKS */
+    .packs-section { padding: 4rem 2rem; max-width: 760px; margin: 0 auto; }
+    .packs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+    .pack {
+      background: #fff;
+      border: 0.5px solid var(--rose);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .pack.featured { border: 2px solid var(--deep-rose); }
+    .pack-featured-badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--deep-rose);
+      color: #fff;
+      font-size: 10px;
+      padding: 4px 16px;
+      border-radius: 999px;
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+    }
+    .pack-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--deep-rose);
+      margin-bottom: 0.5rem;
+    }
+    .pack-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+    .pack-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+    .pack-includes {
+      font-size: 12px;
+      color: var(--deep-rose);
+      letter-spacing: 0.06em;
+      margin-bottom: 1.2rem;
+    }
+    .pack-price {
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 1.4rem;
+    }
+    .pack-price span { font-size: 13px; color: var(--muted); font-weight: 400; }
+    .btn-pack {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--deep-rose);
+      border-radius: 999px;
+      padding: 12px;
+      font-size: 14px;
+      color: var(--deep-rose);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+    }
+    .btn-pack:hover, .pack.featured .btn-pack {
+      background: var(--deep-rose);
+      color: #fff;
+    }
+
+    /* WHY */
+    .why { background: #fff; padding: 4rem 2rem; }
+    .why-inner { max-width: 760px; margin: 0 auto; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .why-item {
+      padding: 1.4rem;
+      border: 0.5px solid var(--rose);
+      border-radius: 14px;
+    }
+    .why-icon { font-size: 20px; margin-bottom: 0.7rem; }
+    .why-item h3 { font-size: 14px; font-weight: 500; color: var(--charcoal); margin-bottom: 0.4rem; }
+    .why-item p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 4rem 2rem; max-width: 760px; margin: 0 auto; }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .testi {
+      background: #fff;
+      border: 0.5px solid var(--rose);
+      border-radius: 14px;
+      padding: 1.4rem;
+    }
+    .testi-stars { color: var(--deep-rose); font-size: 13px; margin-bottom: 0.6rem; }
+    .testi-text {
+      font-size: 13px;
+      color: var(--charcoal);
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .testi-name { font-size: 12px; color: var(--light-muted); }
+
+    /* FAQ */
+    .faq-section { padding: 4rem 2rem; max-width: 760px; margin: 0 auto; }
+    .faq-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .faq-item {
+      background: #fff;
+      border: 0.5px solid var(--rose);
+      border-radius: 14px;
+      padding: 1.4rem;
+    }
+    .faq-q { font-size: 15px; font-weight: 500; color: var(--charcoal); margin-bottom: 0.5rem; }
+    .faq-a { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* CTA */
+    .cta-section {
+      background: var(--rose);
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    .cta-section .section-tag { color: #a05060; }
+    .cta-section .section-title { color: var(--charcoal); }
+    .cta-section .hero-sub { color: #6b4a54; }
+    .btn-dark {
+      display: inline-block;
+      background: var(--charcoal);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 18px 48px;
+      font-size: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-dark:hover { background: #3d2f35; transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--charcoal);
+      text-align: center;
+      padding: 2.5rem 2rem;
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--rose);
+      margin-bottom: 0.6rem;
+    }
+    .footer-brand span { font-style: italic; color: var(--deep-rose); }
+    footer p { font-size: 12px; color: var(--light-muted); }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { padding: 0.8rem 1.2rem; }
+      .hero { padding: 3rem 1.2rem 2.5rem; }
+      .section, .packs-section, .testimonials, .faq-section { padding: 3rem 1.2rem; }
+      .why { padding: 3rem 1.2rem; }
+      .cta-section { padding: 3.5rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">Cutie <span>Club</span></div>
+    <a href="#packs" class="nav-cta">Ver packs</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-tag">Lencería por suscripción · Argentina</p>
+    <h1 class="hero-title">Cutie<br><span>Club</span></h1>
+    <p class="hero-sub">Una caja con bombachas elegidas especialmente para vos. Sin elegir, sin pensar — solo abrirla y enamorarte.</p>
+    <div class="hero-badges">
+      <span class="badge">Envío mensual</span>
+      <span class="badge">100% sorpresa</span>
+      <span class="badge">3 packs disponibles</span>
+    </div>
+    <a href="#packs" class="btn-main">Ver los packs</a>
+    <p class="hero-note">Las primeras 20 suscriptoras tienen 20% off el primer mes</p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- HOW IT WORKS -->
+  <div class="section">
+    <p class="section-tag">Cómo funciona</p>
+    <h2 class="section-title">Simple como <span>abrirla</span></h2>
+    <div class="how-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Elegís tu pack</h3>
+        <p>Sweet, Glam o Dare — según tu estilo y ganas de sorpresa.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Nos encargamos</h3>
+        <p>Elegimos las piezas perfectas para vos cada mes con criterio y amor.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Abrís y amás</h3>
+        <p>La caja llega a tu puerta. La sorpresa es parte del placer.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PACKS -->
+  <div class="packs-section" id="packs">
+    <p class="section-tag">Los packs</p>
+    <h2 class="section-title">Elegí <span>tu club</span></h2>
+    <div class="packs">
+      <div class="pack">
+        <p class="pack-label">Básico</p>
+        <p class="pack-name">Sweet Box</p>
+        <p class="pack-desc">Lo esencial con onda. Dos bombachas cómodas y lindas para tu día a día.</p>
+        <p class="pack-includes">✦ 2 bombachas sorpresa</p>
+        <p class="pack-price">$16.000 <span>/ mes</span></p>
+        <a href="#" class="btn-pack">Suscribirme</a>
+      </div>
+      <div class="pack featured">
+        <span class="pack-featured-badge">Más elegida</span>
+        <p class="pack-label">Premium</p>
+        <p class="pack-name">Glam Box</p>
+        <p class="pack-desc">Más variedad, más sorpresa. Una selección especial para darte un gusto cada mes.</p>
+        <p class="pack-includes">✦ 3 bombachas sorpresa</p>
+        <p class="pack-price">$24.000 <span>/ mes</span></p>
+        <a href="#" class="btn-pack">Suscribirme</a>
+      </div>
+      <div class="pack">
+        <p class="pack-label">Hot</p>
+        <p class="pack-name">Dare Box</p>
+        <p class="pack-desc">Para las que se animan. Piezas atrevidas que no te comprarías solas, pero que van a amar.</p>
+        <p class="pack-includes">✦ 2-3 piezas atrevidas</p>
+        <p class="pack-price">$27.000 <span>/ mes</span></p>
+        <a href="#" class="btn-pack">Suscribirme</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- WHY -->
+  <section class="why">
+    <div class="why-inner">
+      <p class="section-tag">Por qué Cutie Club</p>
+      <h2 class="section-title">El mejor regalo que <span>podés hacerte</span></h2>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-icon">🎁</div>
+          <h3>Sin decisiones</h3>
+          <p>Nosotras elegimos por vos. Vos solo abrís la caja.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">✨</div>
+          <h3>Curaduría experta</h3>
+          <p>Cada pieza es seleccionada con criterio de estilo y comodidad.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">📦</div>
+          <h3>La sorpresa importa</h3>
+          <p>La caja cerrada genera más anticipación que cualquier compra normal.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">💛</div>
+          <h3>Cancelás cuando querés</h3>
+          <p>Sin permanencia, sin complicaciones. Tu suscripción, tus reglas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- TESTIMONIALS -->
+  <div class="testimonials">
+    <p class="section-tag">Lo que dicen</p>
+    <h2 class="section-title">El club ya <span>tiene miembros</span></h2>
+    <div class="testi-grid">
+      <div class="testi">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"No puedo creer que llegó justo lo que necesitaba. Es como si me conocieran."</p>
+        <p class="testi-name">— Sofi, 28</p>
+      </div>
+      <div class="testi">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Abrí la Dare Box y me enamoré. Jamás me hubiese comprado esto sola."</p>
+        <p class="testi-name">— Caro, 31</p>
+      </div>
+      <div class="testi">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"El packaging es tan lindo que no quería abrirla. Pero el interior mejor todavía."</p>
+        <p class="testi-name">— Vale, 25</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <p class="section-tag">Preguntas frecuentes</p>
+    <h2 class="section-title">Todo lo que <span>querés saber</span></h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <p class="faq-q">¿Puedo cancelar cuando quiero?</p>
+        <p class="faq-a">Sí, podés cancelar tu suscripción en cualquier momento sin costo ni penalización.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">¿Cómo indico mi talle?</p>
+        <p class="faq-a">Al momento de suscribirte seleccionás tu talle (S, M, L, XL, XXL) para que todo llegue perfecto.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">¿Cuándo llega la caja?</p>
+        <p class="faq-a">Enviamos todas las cajas el día 10 de cada mes a toda Argentina.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">¿Puedo cambiar de pack?</p>
+        <p class="faq-a">Sí, podés cambiar de pack antes de la fecha de corte mensual escribiéndonos por Instagram.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">¿Cómo se paga?</p>
+        <p class="faq-a">Con tarjeta de crédito o débito a través de MercadoPago. El cobro es automático cada mes.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <p class="section-tag">Sumate al club</p>
+    <h2 class="section-title">Tu sorpresa del mes <span>ya está esperándote</span></h2>
+    <p class="hero-sub" style="max-width:440px; margin: 1.2rem auto 2rem;">Primeras 20 suscriptoras con 20% off el primer mes. No te quedes afuera.</p>
+    <a href="#packs" class="btn-dark">Elegir mi pack</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">Cutie <span>Club</span></div>
+    <p>Tu tienda de sorpresas íntimas · Argentina · 2025</p>
+    <p style="margin-top: 0.5rem;">@cutieclub.ar</p>
+  </footer>
+
+</body>
+</html>
